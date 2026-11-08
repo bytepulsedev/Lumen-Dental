@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- demo -->
+<title>Lumen Dental</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@500..700&family=Nunito+Sans:wght@400..700&display=swap">
+<style>
+/* Split hero with hours card, ruled service grid, dentist cards, appointment form. */
+
+:root{--bg:#F2F5F7;--surface:#FDFEFE;--fg:#121E26;--muted:#4F5E69;--line:#D4DCE2;--accent:#0A6C8C;--accent-fg:#FFFFFF;--warn:#9A5B00;--ok:#0B7A52;--bad:#B3261E;--fd:'Outfit',system-ui,sans-serif;--fb:'Nunito Sans',system-ui,sans-serif;--mono:ui-monospace,Menlo,Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E151B;--surface:#172129;--fg:#E6EBF0;--muted:#A9B4BC;--line:#2B3740;--accent:#5CC8E8;--accent-fg:#0E151B;--warn:#F0B35A;--ok:#4FD6A0;--bad:#FF9A90;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E151B;--surface:#172129;--fg:#E6EBF0;--muted:#A9B4BC;--line:#2B3740;--accent:#5CC8E8;--accent-fg:#0E151B;--warn:#F0B35A;--ok:#4FD6A0;--bad:#FF9A90;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:var(--fb);font-size:16px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+.wrap{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--fd);line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.demo{display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 16px;padding-block:10px;font-size:13px;color:var(--muted);border-bottom:1px solid var(--line)}
+.demo a{color:var(--accent);font-weight:600;text-decoration:none}
+.brandbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 20px;padding-block:16px}
+.brand{font-family:var(--fd);font-weight:700;font-size:22px;text-decoration:none}
+.brandbar nav{display:flex;gap:4px;flex-wrap:wrap}
+.brandbar nav a{padding:6px 10px;font-size:14px;color:var(--muted);text-decoration:none;border-radius:8px}
+.brandbar nav a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:10px;font:600 15px var(--fb);text-decoration:none;border:1px solid var(--fg);background:transparent;color:var(--fg);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.btn.small{padding:7px 12px;font-size:13px;border-radius:8px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+section{padding-block:60px;border-top:1px solid var(--line)}
+.head{display:grid;gap:12px;margin-bottom:32px;max-width:60ch}
+.head h2{font-size:clamp(28px,4vw,42px)}
+.head p{color:var(--muted)}
+form{display:grid;gap:14px}
+label{display:grid;gap:6px;font-size:13px;font-weight:600}
+input,select,textarea{font:inherit;font-weight:400;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.err{color:var(--bad);font-size:14px;min-height:1.2em}
+.ok{padding:16px;border-radius:12px;border:1px solid var(--ok);color:var(--fg);background:var(--bg)}
+.ok b{color:var(--ok)}
+footer{border-top:1px solid var(--line);padding-block:28px 36px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;color:var(--muted);font-size:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 14px var(--fb);padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer}
+.chip[aria-pressed="true"],.chip[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+@media(max-width:900px){.two{grid-template-columns:1fr}}
+@media(max-width:600px){section{padding-block:44px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:center;padding-block:56px 64px}
+.hero>*{min-width:0}
+.hero h1{font-size:clamp(36px,5.6vw,66px);margin-block:14px 18px}
+.hero .lead{font-size:18px;color:var(--muted);max-width:50ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.info{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;display:grid;gap:14px}
+.info h3{font-size:20px}
+.info dl{margin:0;display:grid;gap:10px}
+.info dl div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;font-size:15px}
+.info dl div:last-child{border:0;padding:0}
+.info dt{color:var(--muted)}
+.info dd{margin:0;font-weight:600;text-align:right}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.grid3>div{background:var(--surface);padding:24px;display:grid;gap:8px;align-content:start;min-width:0}
+.grid3 h3{font-size:19px}
+.grid3 p{color:var(--muted);font-size:15px}
+.grid3 .price{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.people{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:8px;min-width:0}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font:700 20px var(--fd)}
+.person p{color:var(--muted);font-size:14.5px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.menu{display:grid;gap:0;max-width:760px}
+.menu .item{display:grid;grid-template-columns:1fr auto;gap:4px 20px;padding:16px 0;border-bottom:1px solid var(--line)}
+.menu .item h3{font-size:20px}
+.menu .item p{grid-column:1;color:var(--muted);font-size:15px}
+.menu .price{font-family:var(--mono);font-size:15px;grid-row:1;grid-column:2}
+.book{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:start}
+.book>*{min-width:0}
+.book form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px}
+@media(max-width:900px){.hero,.book{grid-template-columns:1fr;gap:32px}.grid3,.people{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid3,.people{grid-template-columns:1fr}.hero{padding-block:36px 44px}}
+
+</style>
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap demo"><span>Demo project by BytePulseDev. All names and data are made up.</span><a href="index.html" target="_blank" rel="noopener">BytePulseDev portfolio ↗</a></div>
+<div class="wrap brandbar"><a class="brand" href="#top">Lumen Dental</a><nav><a href="#services">Treatments</a><a href="#team">Dentists</a><a href="#book">Book</a></nav></div>
+<main class="wrap" id="top"><div class="hero"><div><p class="eyebrow">Family dental clinic</p><h1>Gentle dentistry, booked in a minute.</h1><p class="lead">Check-ups, cleaning and braces for the whole family, with clear prices before any treatment starts.</p><div class="cta"><a class="btn primary" href="#book">Book a visit</a><a class="btn" href="#services">See treatments</a></div></div><aside class="info"><h3>Clinic hours</h3><dl><div><dt>Mon to Fri</dt><dd>9:00 to 18:00</dd></div><div><dt>Saturday</dt><dd>10:00 to 15:00</dd></div><div><dt>Sunday</dt><dd>Closed</dd></div><div><dt>Emergencies</dt><dd>Call any day</dd></div></dl></aside></div><section id="services"><div class="head"><p class="eyebrow">Treatments</p><h2>Care you can plan around</h2></div><div class="grid3"><div><h3>Check-up and cleaning</h3><p>Full exam, scaling and polish with a clear plan.</p><span class="price">from Rs. 3,000</span></div><div><h3>Fillings and root canal</h3><p>Painless treatment with modern numbing.</p><span class="price">from Rs. 5,000</span></div><div><h3>Braces and aligners</h3><p>Straighter teeth with monthly progress checks.</p><span class="price">consultation free</span></div><div><h3>Whitening</h3><p>Safe in-clinic whitening in one visit.</p><span class="price">from Rs. 15,000</span></div><div><h3>Children's dentistry</h3><p>Calm, short visits that kids don't dread.</p><span class="price">from Rs. 2,000</span></div><div><h3>Emergency care</h3><p>Same-day help for pain, chips and swelling.</p><span class="price">call us</span></div></div></section><section id="team"><div class="head"><p class="eyebrow">Dentists</p><h2>Meet the people who treat you</h2><p>Three dentists, each with a focus, so you see the right person the first time.</p></div><div class="people"><div class="person"><div class="avatar">AR</div><h3>Dr. Ayesha Rahman</h3><p>General dentistry and family care.</p></div><div class="person"><div class="avatar">OS</div><h3>Dr. Omar Siddiqui</h3><p>Braces, aligners and smile design.</p></div><div class="person"><div class="avatar">HF</div><h3>Dr. Hina Farooq</h3><p>Children's dentistry and nervous patients.</p></div></div></section><section id="book"><div class="book"><div class="head" style="margin:0"><p class="eyebrow">Appointments</p><h2>Request a visit</h2><p>Pick a day and time. The clinic confirms by phone.</p></div><form id="f" novalidate><div class="two"><label for="n">Name<input id="n" autocomplete="name"></label><label for="p">Phone<input id="p" type="tel" autocomplete="tel" placeholder="0300 1234567"></label></div><div class="two"><label for="date">Date<input id="date" type="date"></label><label for="time">Time<select id="time"><option>09:00</option><option>10:00</option><option>11:00</option><option>12:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></label></div><label for="x">Treatment<select id="x"><option>Check-up and cleaning</option><option>Fillings or root canal</option><option>Braces consultation</option><option>Whitening</option><option>Child's visit</option><option>Dental emergency</option></select></label><p class="err" id="err" role="alert"></p><button class="btn primary" type="submit">Request appointment</button><div class="ok" id="ok" hidden></div></form></div></section></main>
+<footer class="wrap"><span>© 2026 Lumen Dental · Demo website</span><span>Built by <a href="index.html" target="_blank" rel="noopener">BytePulseDev</a></span></footer>
+
+<script>
+(function(){
+  var MENU=[];
+  var tabs=document.getElementById('tabs'),list=document.getElementById('menu-list');
+  function show(i){
+    if(!tabs)return;
+    Array.prototype.forEach.call(tabs.children,function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');});
+    list.innerHTML='';
+    MENU[i].items.forEach(function(it){
+      var d=document.createElement('div');d.className='item';
+      var h=document.createElement('h3');h.textContent=it[0];
+      var p=document.createElement('p');p.textContent=it[1];
+      var pr=document.createElement('span');pr.className='price';pr.textContent=it[2];
+      d.appendChild(h);d.appendChild(pr);d.appendChild(p);list.appendChild(d);
+    });
+  }
+  if(tabs&&MENU.length){
+    MENU.forEach(function(m,i){
+      var b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('role','tab');b.textContent=m.cat;
+      b.addEventListener('click',function(){show(i);});tabs.appendChild(b);
+    });
+    show(0);
+  }
+  var dt=document.getElementById('date');
+  try{var t=new Date();t.setMinutes(t.getMinutes()-t.getTimezoneOffset());dt.min=t.toISOString().slice(0,10);}catch(e){}
+  var f=document.getElementById('f'),err=document.getElementById('err'),ok=document.getElementById('ok');
+  f.addEventListener('submit',function(e){
+    e.preventDefault();ok.hidden=true;
+    var n=document.getElementById('n').value.trim(),p=document.getElementById('p').value.replace(/\D/g,''),d=dt.value;
+    if(!n){err.textContent='Please enter your name.';return;}
+    if(p.length<7){err.textContent='Please enter a phone number we can call.';return;}
+    if(!d){err.textContent='Please choose a date.';return;}
+    err.textContent='';
+    var tm=document.getElementById('time').value,x=document.getElementById('x').value;
+    ok.innerHTML='';
+    var b=document.createElement('b');b.textContent='Request noted. ';
+    ok.appendChild(b);
+    ok.appendChild(document.createTextNode('Thank you, '+n+'. '+x+' on '+d+' at '+tm+'. This is a demo form, so nothing was sent.'));
+    ok.hidden=false;f.reset();
+  });
+})();
+</script>
+</body>
+</html>
